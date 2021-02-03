@@ -22,7 +22,7 @@ composer require interkassa/php-sdk
 ```
 #### Manual installation
 ```cmd
-git clone -b master https://github.com/interkassa/php-sdk.git
+git clone https://github.com/interkassa/php-sdk.git
 ```
 
 ```php
