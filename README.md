@@ -100,7 +100,7 @@ $invoiceRequest
     ->setCurrency('UAH')
     ->setDescription('Payment Description')
     ->setAction('payway')
-    ->setPaywayVia('mastercard_cpaytrz_merchant_uah');
+    ->setPaywayVia('test_interkassa_test_xts');
 
 $result = $SDKClient->calculateInvoice($invoiceRequest);
 
