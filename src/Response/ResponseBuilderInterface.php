@@ -8,5 +8,5 @@ interface ResponseBuilderInterface
 {
     public function handleError(HttpClientResponse $httpClientResponse);
 
-    public function buildResponse(HttpClientResponse $httpClientResponse): InterkassaResponse;
+    public function buildResponse(): InterkassaResponse;
 }

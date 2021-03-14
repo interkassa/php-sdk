@@ -16,6 +16,6 @@ class ResponseDirector
     {
         $builder->handleError($clientResponse);
 
-        return $builder->buildResponse($clientResponse);
+        return $builder->buildResponse();
     }
 }

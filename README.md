@@ -49,6 +49,8 @@ require 'vendor/autoload.php';
 
 $configuration = new \Interkassa\Helper\Config();
 $configuration->setCheckoutSecretKey('5rkFvckBLKcDHQrW');
+$configuration->setAuthorizationKey('TpIJabcdefgdtNabcdefgMCeYvdVkF');
+$configuration->setAccountId('ffa001aaaa00000000001234');
 
 $SDKClient = new \Interkassa\Interkassa($configuration);
 ```
@@ -127,6 +129,208 @@ $result = $SDKClient->getPaymentDirection($invoiceRequest);
 $code = $result->getCode();
 $status = $result->getStatus();
 $message = $result->getMessage();
+$data = $result->getData();
+```
+
+## Returns all currency [read more](https://docs.interkassa.com/#operation/getCurrencyList)
+
+```php
+$result = $SDKClient->getCurrencyList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns concrete currency by ID [read more](https://docs.interkassa.com/#operation/getCurrencyId)
+
+```php
+$result = $SDKClient->getCurrencyById('30');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns list of payment directions for input included in the Interkassa system.  [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayList)
+
+```php
+$result = $SDKClient->getPaysystemInputPaywayList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+##  Returns a payment direction for input by a specified ID included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayId)
+
+```php
+$result = $SDKClient->getPaysystemInputPaywayById('11a001111100000000001234');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns list of payment directions for withdrawal included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getOutputPaywayList)
+
+```php
+$result = $SDKClient->getPaysystemOutputPaywayList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns a payment direction for withdrawal, included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getOutputPaywayId)
+
+```php
+$result = $SDKClient->getPaysystemOutputPaywayById('11a001111100000000004321');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+## Returns list of accounts available to the user [read more](https://docs.interkassa.com/#operation/getAccountList)
+
+```php
+$result = $SDKClient->getAccountList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns account data for a given ID [read more](https://docs.interkassa.com/#operation/getAccountId)
+
+```php
+$result = $SDKClient->getAccountById('ffa001aaaa00000000001234');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns list of checkouts linked to your account. [read more](https://docs.interkassa.com/#operation/get%D1%81heckoutList)
+
+```php
+$result = $SDKClient->getCheckoutList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns checkout data for a given ID. [read more](https://docs.interkassa.com/#operation/get%D1%81heckoutId)
+
+```php
+$result = $SDKClient->getCheckoutById('11a002222200000000004321');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns all payments. [read more](https://docs.interkassa.com/#operation/getCoInvoice)
+
+```php
+$result = $SDKClient->getAllInvoices();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns data of payment by ID. [read more](https://docs.interkassa.com/#operation/getCoInvoiceId)
+
+```php
+$result = $SDKClient->getInvoiceById('134001234');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns a list of made payment withdrawals. [read more](https://docs.interkassa.com/#operation/getWithdrawList)
+
+```php
+$result = $SDKClient->getWithdrawList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns information on a specific payment withdrawal ID. [read more](https://docs.interkassa.com/#operation/getWithdrawId)
+
+```php
+$result = $SDKClient->getWithdrawById('15001234');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns list of purses associated with an account, with their parameters. [read more](https://docs.interkassa.com/#operation/getPurseList)
+
+```php
+$result = $SDKClient->getPurseList();
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+
+$result = $SDKClient->getPurseList([
+   'checkoutId' => '11a002222200000000004321',
+   'currency' => '20'
+]);
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Returns purse data for a given ID. [read more](https://docs.interkassa.com/#operation/getPurseId)
+
+```php
+$result = $SDKClient->getPurseById('404300001234');
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Creates a refund in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getRefundPost)
+
+```php
+$refundRequest = new \Interkassa\Request\RefundRequest();
+$refundRequest
+    ->setId('134001234')
+    ->setAmount('15')
+    ->setDescription('Reason of the refund');
+$result = $SDKClient->makeRefund($refundRequest);
+
+$code = $result->getCode();
+$status = $result->getStatus();
+$data = $result->getData();
+```
+
+## Creates a new withdraw in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getWithdrawPost)
+
+```php
+$withdrawRequest = new \Interkassa\Request\WithdrawRequest();
+$withdrawRequest
+    ->setAmount('15')
+    ->setMethod('card')
+    ->setCurrency('uah')
+    ->setAction('process')
+    ->setDetail('card', '5100123412341234')
+    ->setPurseId('300000912345')
+    ->setUseShortAlias('true');
+$result = $SDKClient->makeWithdraw($withdrawRequest);
+
+$code = $result->getCode();
+$status = $result->getStatus();
 $data = $result->getData();
 ```
 

@@ -9,7 +9,7 @@ use Interkassa\Exception\InternalServerException;
 use Interkassa\Exception\UnexpectedException;
 use Interkassa\HttpClient\HttpClientResponse;
 
-class SciResponseBuilder implements ResponseBuilderInterface
+class ApiResponseBuilder implements ResponseBuilderInterface
 {
     /**
      * @var array
@@ -28,15 +28,19 @@ class SciResponseBuilder implements ResponseBuilderInterface
         $this->parseResponse($httpClientResponse);
 
         $httpCode = $httpClientResponse->getHttpCode();
+
         if (!$this->isOk()) {
-            throw new BadRequestException($this->data['resultMsg'], $this->data['resultCode']);
+            throw new BadRequestException(
+                $this->data['data']['@resultMessage'] ?? $this->data['message'],
+                $this->data['code']
+            );
         }
 
         switch ($httpCode) {
             case 200:
                 return;
             case 401:
-                throw new AccessDeniedHttpException($this->data['resultMsg']);
+                throw new AccessDeniedHttpException($this->data['message']);
             case 500:
                 throw new InternalServerException('Internal server error.');
             default:
@@ -57,12 +61,7 @@ class SciResponseBuilder implements ResponseBuilderInterface
      */
     public function buildResponse(): InterkassaResponse
     {
-        return new InterkassaResponse([
-            'data' => $this->data['resultData'],
-            'code' => $this->data['resultCode'],
-            'status' => '',
-            'message' => $this->data['resultMsg'],
-        ]);
+        return new InterkassaResponse($this->data);
     }
 
     /**
@@ -70,6 +69,6 @@ class SciResponseBuilder implements ResponseBuilderInterface
      */
     public function isOk(): bool
     {
-        return $this->data['resultCode'] == '0';
+        return $this->data['code'] == '0';
     }
 }

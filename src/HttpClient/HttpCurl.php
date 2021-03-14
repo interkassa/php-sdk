@@ -60,7 +60,7 @@ class HttpCurl implements ClientInterface
     /**
      * @return bool
      */
-    private function curlEnabled()
+    private function curlEnabled(): bool
     {
         return function_exists('curl_init');
     }

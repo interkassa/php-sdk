@@ -22,4 +22,16 @@ class Validator
             throw new ValidationFieldException('Missing required fields: ' . implode(', ', $missingRequiredFields));
         }
     }
+
+    public function validateDetailForWithdraw(RequestInterface $request)
+    {
+        $keys = array_keys($request->getData());
+        foreach ($keys as $key) {
+            if (preg_match('/detail/', $key) == 1) {
+                return;
+            }
+        }
+
+        throw new ValidationFieldException('Missing required field detail');
+    }
 }
