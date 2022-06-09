@@ -432,6 +432,20 @@ class BaseInvoiceRequest implements RequestInterface
     }
 
     /**
+     * Тип режима.
+     *
+     * Опциональный параметр.
+     *
+     * @param string $value
+     *
+     * @return BaseInvoiceRequest
+     */
+    public function setMode(string $value): BaseInvoiceRequest
+    {
+        return $this->addToParams('ik_mode', $value);
+    }
+
+    /**
      * @return array
      */
     public function getData(): array
