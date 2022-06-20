@@ -10,6 +10,11 @@ class BaseInvoiceRequest implements RequestInterface
     const PREFIX = 'ik_x_';
 
     /**
+     * Prefix for customer fields.
+     */
+    const CUSTOMER_PREFIX = 'ik_customer_';
+
+    /**
      * @var array
      */
     protected $requiredFields = [];
@@ -96,6 +101,21 @@ class BaseInvoiceRequest implements RequestInterface
     public function setCustomField(string $name, string $value): BaseInvoiceRequest
     {
         return $this->addToParams(self::PREFIX . $name, $value);
+    }
+
+    /**
+     * Информация о плательщике.
+     *
+     * Позволяет передавать дополнительные поля на SCI c информацией о плательщике
+     * (email, phone, first_name, last_name, country...).
+     *
+     * @param string $value
+     *
+     * @return BaseInvoiceRequest
+     */
+    public function setCustomerField(string $name, string $value): BaseInvoiceRequest
+    {
+        return $this->addToParams(self::CUSTOMER_PREFIX . $name, $value);
     }
 
     /**
