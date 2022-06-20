@@ -81,7 +81,7 @@ $invoiceRequest
     ->setAction('process')
     ->setPaywayVia('test_interkassa_test_xts');
 
-$response = $SDKClient->makeInvoicePaySystemLink($invoiceRequest);
+$result = $SDKClient->makeInvoicePaySystemLink($invoiceRequest);
 
 $code = $result->getCode();
 $status = $result->getStatus();
