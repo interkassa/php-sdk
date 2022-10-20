@@ -5,6 +5,7 @@
 </p>
 
 ## Payment service provider
+
 A payment service provider (PSP) offers shops online services for accepting electronic payments by a variety of payment methods including credit card, bank-based payments such as direct debit, bank transfer, and real-time bank transfer based on online banking. Typically, they use a software as a service model and form a single payment gateway for their clients (merchants) to multiple payment methods.
 [read more](https://en.wikipedia.org/wiki/Payment_service_provider)
 
@@ -17,10 +18,13 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 For more information on how to use/install composer, please visit https://github.com/composer/composer
 
 #### Composer installation
+
 ```cmd
 composer require interkassa/php-sdk
 ```
+
 #### Manual installation
+
 ```cmd
 git clone https://github.com/interkassa/php-sdk.git
 ```
@@ -31,14 +35,20 @@ require '/path-to-sdk/autoload.php';
 ```
 
 ## Direct POST request from your site without PHP coding.
+
 ```html
-<form name="payment" method="post" action="https://sci.interkassa.com/" accept-charset="UTF-8">
-  <input type="hidden" name="ik_co_id" value="51237daa8f2a2d8413000000"/>
-  <input type="hidden" name="ik_pm_no" value="ID_1234"/>
-  <input type="hidden" name="ik_am" value="1.44"/>
-  <input type="hidden" name="ik_cur" value="uah"/>
-  <input type="hidden" name="ik_desc" value="Payment Description"/>
-  <input type="submit" value="Pay">
+<form
+  name="payment"
+  method="post"
+  action="https://sci.interkassa.com/"
+  accept-charset="UTF-8"
+>
+  <input type="hidden" name="ik_co_id" value="51237daa8f2a2d8413000000" />
+  <input type="hidden" name="ik_pm_no" value="ID_1234" />
+  <input type="hidden" name="ik_am" value="1.44" />
+  <input type="hidden" name="ik_cur" value="uah" />
+  <input type="hidden" name="ik_desc" value="Payment Description" />
+  <input type="submit" value="Pay" />
 </form>
 ```
 
@@ -54,7 +64,9 @@ $configuration->setAccountId('ffa001aaaa00000000001234');
 
 $SDKClient = new \Interkassa\Interkassa($configuration);
 ```
+
 ## Get link for rediret to SCI (Making invoice) [read more](https://docs.interkassa.com/#section/3.-Protokol)
+
 ```php
 $invoiceRequest = new \Interkassa\Request\GetInvoiceRequest();
 $invoiceRequest
@@ -91,6 +103,7 @@ $data = $result->getData();
 $html = $SDKClient->redirectForm($data);
 echo $html;
 ```
+
 ## Calculate invoice [read more](https://docs.interkassa.com/#section/4.-Rasshirennye-vozmozhnosti/4.1.3.-Poluchenie-dannyh-o-stoimosti-platezha-na-platezhnom-shlyuze)
 
 ```php
@@ -123,6 +136,8 @@ $invoiceRequest
     ->setCurrency('UAH')
     ->setDescription('Payment Description')
     ->setAction('payways');
+    ->setPaymentMethod('visa')
+    ->setPaymentCurrency('USD');
 
 $result = $SDKClient->getPaymentDirection($invoiceRequest);
 
@@ -152,7 +167,7 @@ $status = $result->getStatus();
 $data = $result->getData();
 ```
 
-## Returns list of payment directions for input included in the Interkassa system.  [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayList)
+## Returns list of payment directions for input included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayList)
 
 ```php
 $result = $SDKClient->getPaysystemInputPaywayList();
@@ -162,7 +177,7 @@ $status = $result->getStatus();
 $data = $result->getData();
 ```
 
-##  Returns a payment direction for input by a specified ID included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayId)
+## Returns a payment direction for input by a specified ID included in the Interkassa system. [read more](https://docs.interkassa.com/#operation/getPaysystemInputPaywayId)
 
 ```php
 $result = $SDKClient->getPaysystemInputPaywayById('11a001111100000000001234');
@@ -191,6 +206,7 @@ $code = $result->getCode();
 $status = $result->getStatus();
 $data = $result->getData();
 ```
+
 ## Returns list of accounts available to the user [read more](https://docs.interkassa.com/#operation/getAccountList)
 
 ```php
@@ -335,4 +351,5 @@ $data = $result->getData();
 ```
 
 # Api
+
 See [api-docs](https://docs.interkassa.com/)

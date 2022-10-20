@@ -72,6 +72,7 @@ class BaseInvoiceRequest implements RequestInterface
         return $this->addToParams('ik_co_id', $value);
     }
 
+
     /**
      * Валюта платежа.
      * Обязательный параметр,
@@ -85,6 +86,31 @@ class BaseInvoiceRequest implements RequestInterface
     public function setCurrency(string $value): BaseInvoiceRequest
     {
         return $this->addToParams('ik_cur', $value);
+    }
+
+
+    /**
+     * Обязательный параметр,
+     * 
+     * @param string $value
+     *
+     * @return BaseInvoiceRequest
+     */
+    public function setPaymentMethod(string $value): BaseInvoiceRequest
+    {
+        return $this->addToParams('ik_payment_method', $value);
+    }
+
+    /**
+     * Обязательный параметр,
+     * 
+     * @param string $value
+     *
+     * @return BaseInvoiceRequest
+     */
+    public function setPaymentCurrency(string $value): BaseInvoiceRequest
+    {
+        return $this->addToParams('ik_payment_currency', $value);
     }
 
     /**
@@ -508,6 +534,7 @@ class BaseInvoiceRequest implements RequestInterface
     {
         return $this->needSignature;
     }
+
 
     /**
      * @param string $fieldName
