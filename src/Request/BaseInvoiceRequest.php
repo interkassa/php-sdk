@@ -90,7 +90,8 @@ class BaseInvoiceRequest implements RequestInterface
 
 
     /**
-     * Optional
+     * Обязательный параметр,
+     * 
      * @param string $value
      *
      * @return BaseInvoiceRequest
@@ -101,7 +102,8 @@ class BaseInvoiceRequest implements RequestInterface
     }
 
     /**
-     * Optional
+     * Обязательный параметр,
+     * 
      * @param string $value
      *
      * @return BaseInvoiceRequest

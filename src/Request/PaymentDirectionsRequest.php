@@ -15,6 +15,8 @@ class PaymentDirectionsRequest extends BaseInvoiceRequest
         'ik_desc',
         'ik_act',
         'ik_sign',
+        'ik_payment_method',
+        'ik_payment_currency'
     ];
 
     /**
